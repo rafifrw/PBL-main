@@ -4,7 +4,7 @@ use App\Http\Controllers\jenisPenggunaController;
 use App\Http\Controllers\penggunaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\profileController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -13,14 +13,13 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------php
+|--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::pattern('id', '[0-9]+'); // Parameter {id} harus berupa angka
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -36,21 +35,22 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [WelcomeController::class, 'index']);
 
-    Route::group(['prefix' => 'pengguna', 'middleware' => 'authorize:SuperAdmin'], function () {
-        Route::get('/', [penggunaController::class, 'index']);  // Menampilkan halaman awal pengguna
-        Route::post('/list', [penggunaController::class, 'list']);  // Menampilkan data pengguna dalam bentuk json untuk datatables
-        Route::get('/create', [penggunaController::class, 'create']);  // Menampilkan halaman form tambah pengguna
-        Route::post('/', [penggunaController::class, 'store']);  // Menyimpan data pengguna baru
-        Route::get('/create_ajax', [penggunaController::class, 'create_ajax']);  // Menampilkan halaman form tambah pengguna ajax
-        Route::post('/ajax', [penggunaController::class, 'store_ajax']);  // Menyimpan data pengguna baru ajax
-        Route::get('/{id}', [penggunaController::class, 'show']);  // Menampilkan detail pengguna
-        Route::get('/{id}/edit', [penggunaController::class, 'edit']);  // Menampilkan halaman form edit pengguna
-        Route::put('/{id}', [penggunaController::class, 'update']);  // Menyimpan perubahan data pengguna
-        Route::get('/{id}/edit_ajax', [penggunaController::class, 'edit_ajax']);  // Menampilkan form edit pengguna ajax
-        Route::put('/{id}/update_ajax', [penggunaController::class, 'update_ajax']);  // Menyimpan perubahan data pengguna ajax
-        Route::get('/{id}/delete_ajax', [penggunaController::class, 'confirm_ajax']);  // Menampilkan form konfirmasi delete pengguna Ajax
-        Route::delete('/{id}/delete_ajax', [penggunaController::class, 'delete_ajax']);  // Menghapus data pengguna Ajax
-        Route::delete('/{id}', [penggunaController::class, 'destroy']);  // Menghapus data pengguna
+    Route::group(['prefix' => 'pengguna', 'middleware' => 'authorize:SADM'], function () {
+        Route::get('/', [penggunaController::class, 'index']);  // Menampilkan halaman awal Stok
+        Route::post('/list', [penggunaController::class, 'list']);  // Menampilkan data Stok dalam bentuk json untuk datatables
+        Route::get('/create', [penggunaController::class, 'create']);  // Menampilkan form tambah Stok
+        Route::post('/', [penggunaController::class, 'store']);  // Menyimpan data Stok
+        Route::get('/create_ajax', [penggunaController::class, 'create_ajax']);  // Menampilkan form tambah supplier ajax
+        Route::post('/ajax', [penggunaController::class, 'store_ajax']);  // Menyimpan data supplier baru ajax
+        Route::get('/{id}/edit_ajax', [penggunaController::class, 'edit_ajax']);  // Menampilkan form edit supplier ajax
+        Route::put('/{id}/update_ajax', [penggunaController::class, 'update_ajax']);  // Menyimpan perubahan data barang ajax
+        Route::get('/{id}/delete_ajax', [penggunaController::class, 'confirm_ajax']);  // Menampilkan form konfirmasi delete supplier ajax
+        Route::delete('/{id}/delete_ajax', [penggunaController::class, 'delete_ajax']);  // Menghapus data supplier ajax
+        Route::get('/{id}/show_ajax', [penggunaController::class, 'show_ajax']);  // Menampilkan detail supplier
+        Route::get('/import', [penggunaController::class, 'import']);  // Ajax form upload excel
+        Route::post('/import_ajax', [penggunaController::class, 'import_ajax']);  // Ajax import excel
+        Route::get('/export_excel', [penggunaController::class, 'export_excel']);      // export excel
+        Route::get('/export_pdf',[penggunaController::class,'export_pdf']); // export pdf
     });
     Route::group(['prefix' => 'jenisPengguna', 'middleware' => 'authorize:SADM'], function () {
         Route::get('/', [jenisPenggunaController::class, 'index']);  // Menampilkan halaman awal Stok
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/import', [jenisPenggunaController::class, 'import']);  // Ajax form upload excel
         Route::post('/import_ajax', [jenisPenggunaController::class, 'import_ajax']);  // Ajax import excel
         Route::get('/export_excel', [jenisPenggunaController::class, 'export_excel']);      // export excel
-        Route::get('/export_pdf', [jenisPenggunaController::class, 'export_pdf']); // export pdf
+        Route::get('/export_pdf',[jenisPenggunaController::class,'export_pdf']); // export pdf
     });
 
     Route::group(['prefix' => 'profile', 'middleware' => ['authorize:SADM']], function () {
@@ -75,4 +75,5 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/edit', [ProfileController::class, 'edit']);
         Route::put('/{id}', [ProfileController::class, 'update']);
     });
+    
 });

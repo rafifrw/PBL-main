@@ -46,11 +46,11 @@
 @push('css')
 <style>
     .profile-button {
-        background-color: #7797CD;
+        background-color: #2d85e2;
     }
 
     .profile-button:hover {
-        background-color: #0056b3;
+        background-color: #003369;
         color: #fff;
         transform: translateY(-2px);
     }

@@ -1,11 +1,11 @@
 @extends('layoutsSuperAdmin.template')
+
 @section('content')
-<div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
-    data-keyboard="false" aria-hidden="true"></div>
+<div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-hidden="true"></div>
 
 <div class="container mt-5 p-4 bg-white rounded shadow-sm" style="max-width: 600px;">
     <!-- Profile Header -->
-    <div class="bg-primary text-white text-center py-2 rounded-top">
+    <div class="profile-header">
         <h5 class="mb-0">Data Pengguna</h5>
     </div>
 
@@ -36,7 +36,6 @@
 
         <!-- Buttons -->
         <div class="text-center">
-            <!-- Button Edit Profile -->
             <button class="btn btn-primary profile-button mb-2" onclick="modalAction('{{ url('profile/' . $pengguna->id_pengguna . '/edit') }}')">Edit Profil</button>
         </div>
     </div>
@@ -45,8 +44,19 @@
 
 @push('css')
 <style>
+    .profile-header {
+        background-color: #2d85e2;
+        text-align: center;
+        padding: 10px 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        color: #fff;
+    }
+
+    /* Styling for Profile Button */
     .profile-button {
         background-color: #2d85e2;
+        transition: all 0.2s ease-in-out;
     }
 
     .profile-button:hover {
@@ -55,7 +65,7 @@
         transform: translateY(-2px);
     }
 
-    /* Table styling */
+    /* Table Styling */
     .table th {
         width: 150px;
         font-weight: normal;
@@ -64,15 +74,15 @@
     }
 
     .table td {
-        text-align: left;
         color: #333;
+        text-align: left;
     }
 
     .table-borderless th, .table-borderless td {
         border: none;
     }
 
-    /* Center the container */
+    /* Container Max Width */
     .container {
         max-width: 500px;
     }
@@ -90,7 +100,7 @@
 @endpush
 
 @if(session('success'))
-    <div class="alert alert-success mt-3">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success mt-3">
+    {{ session('success') }}
+</div>
 @endif

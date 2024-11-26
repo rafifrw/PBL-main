@@ -3,8 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-                <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger">
@@ -24,8 +25,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Data Jenis Pengguna</h5>
-                    <button type="button" class="close" data-dismiss="modal" arialabel="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -35,15 +37,20 @@
                         <small id="error-level_kode" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label class="col-1 control-label col-form-label">Jenis Pengguna</label>
-                        <div class="col-11">
+                        <label class>Jenis Pengguna</label>
+                        
                             <input type="text" class="form-control" id="nama_jenis_pengguna" name="nama_jenis_pengguna"
                                 value="" required>
-                        </div>
+    
                         <small id="error-nama_jenis_pengguna" class="error-text form-text text-danger"></small>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btnwarning">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
             </div>
+        </div>
     </form>
     <script>
         $(document).ready(function () {

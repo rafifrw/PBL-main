@@ -148,58 +148,6 @@
             
         }
 
-        .content .right .form-group .password-toggle {
-            position: relative;
-        }
-
-        .content .right .form-group .password-toggle input {
-            padding-right: 40px;
-        }
-
-        .content .right .form-group .password-toggle .toggle-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-
-        .content .right .form-group .toggle-icon i {
-            font-size: 18px;
-        }
-
-        .content .right .form-group .toggle-icon i.fa-eye {
-            display: none;
-        }
-
-        .content .right .form-group .toggle-icon i.fa-eye-slash {
-            display: block;
-        }
-
-        .content .right .form-group .toggle-icon.show i.fa-eye {
-            display: block;
-        }
-
-        .content .right .form-group .toggle-icon.show i.fa-eye-slash {
-            display: none;
-        }
-
-        .content .right .form-group .toggle-icon.show+input {
-            type: text;
-        }
-
-        .content .right .form-group .toggle-icon:not(.show)+input {
-            type: password;
-        }
-
-        .content .right .form-group .toggle-icon.show+input[type="password"] {
-            type: text;
-        }
-
-        .content .right .form-group .toggle-icon:not(.show)+input[type="text"] {
-            type: password;
-        }
-
         .content .right .btn {
             width: 100%;
             padding: 10px;
@@ -260,42 +208,25 @@
                     <input id="nama_pengguna" name="nama_pengguna" placeholder="Contoh : Rismawati" type="text" />
                     <small id="error-username" class="error-text text-danger"></small>
                 </div>
-                <div class="form-group password-toggle">
+                <div class="form-group">
                     <label for="password">
                         Kata Sandi
                     </label>
                     <input id="password" name="password" type="password" />
-                    <div class="toggle-icon" onclick="togglePassword()">
-                        <i class="fas fa-eye"></i>
-                        <i class="fas fa-eye-slash"></i>
-                    </div>
                     <small id="error-password" class="error-text text-danger"></small>
                 </div>
                 <button type="submit" class="btn">
                     Sign In
                 </button>
-                <div class="register-link">
+                {{-- <div class="register-link">
                     Belum punya akun?
                     <a href="{{ url('register') }}">
                         Daftar Sekarang
                     </a>
-                </div>
+                </div> --}}
             </form>
         </div>
     </div>
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.toggle-icon');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.add('show');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('show');
-            }
-        }
-    </script>
 
 
     <!-- jQuery -->
